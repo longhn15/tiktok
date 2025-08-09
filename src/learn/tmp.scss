@@ -1,0 +1,39 @@
+// @import 'file.scss';
+$main-color: red;
+
+@mixin buttonStyle {
+    background-color: $main-color;
+    border: 0;
+    color: white;
+}
+
+%buttonStyle1 {
+    border: 0;
+}
+
+.button1 {
+    @extend %buttonStyle1;
+}
+
+.button2 {
+    @extend .button1
+}
+
+.heading {
+    color: red;
+    background-color: orange;
+}
+
+
+section  {
+   button {
+        @include buttonStyle();
+        display: flex;
+        justify-content: center;
+        align-items: center;
+   }
+
+   p {
+    font-size: 20px;
+   }
+}
