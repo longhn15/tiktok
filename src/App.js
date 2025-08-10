@@ -1,8 +1,41 @@
+import { Fragment } from "react"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { publicRoutes } from "~/routes"
+import {DefaulLayout}  from '~/Components/Layout'
 
 function App() {
-
   return (
-    <h1>Hello 500 ae</h1>
+   <Router>
+      <div className="App">
+        <Routes>
+          {
+            publicRoutes.map((route, index) => {
+              let Layout = DefaulLayout
+
+              if (route.layout) {
+                Layout = route.layout
+              }
+              else if (route.layout === null) {
+                Layout = Fragmentấu
+              }
+
+              const Page = route.component;
+              return (
+                <Route 
+                  key={index}
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  }
+                />
+              )
+            })
+          }
+        </Routes>
+      </div>
+   </Router>
   )
 }
 
