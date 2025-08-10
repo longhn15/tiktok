@@ -16,7 +16,7 @@ function App() {
                 Layout = route.layout
               }
               else if (route.layout === null) {
-                Layout = Fragmentấu
+                Layout = Fragment
               }
 
               const Page = route.component;
