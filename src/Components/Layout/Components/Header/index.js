@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faMagnifyingGlass, faSignIn, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
+
+import Button from '~/Components/Button';
 import images from '~/assets/images'
 import styles from './Header.module.scss'
 import { Wrapper as PopperWrapper } from '~/Components/Popper';
@@ -51,15 +53,15 @@ function Header() {
                         <button className={cx('clear')}>
                             <FontAwesomeIcon icon={faCircleXmark} />
                         </button>
-                            <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-                    
-                            <button className={cx('search-btn')}>
-                                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                            </button>
+                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
+                        <button className={cx('search-btn')}>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        </button>
                     </div>
                 </Tippy>
-                <div className={cx('actions')}>
-                    
+                <div className={cx('actions')}  >
+                    <Button text >Upload</Button>
+                    <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />} >Log in</Button>
                 </div>
             </div>
         </header>
