@@ -1,22 +1,17 @@
-import { Children, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleQuestion,
-    faCircleXmark,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
     faKeyboard,
-    faMagnifyingGlass,
     faSignIn,
     faSignOut,
-    faSpinner,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -24,10 +19,10 @@ import Button from '~/Components/Button';
 import Image from '~/Components/Image';
 import images from '~/assets/images';
 import styles from './Header.module.scss';
-import { Wrapper as PopperWrapper } from '~/Components/Popper';
-import AccountItem from '~/Components/AccountItem';
 import Menu from '~/Components/Popper/Menu';
-import { Uploadicon } from '~/Components/Icons';
+import { InboxIcon, MessageIcon, Uploadicon } from '~/Components/Icons';
+import Search from '../Search';
+import { faMessage } from '@fortawesome/free-regular-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -89,8 +84,6 @@ const userMenu = [
 
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-
     // const ImageRef = useRef()
 
     const currentUser = true;
@@ -100,41 +93,28 @@ function Header() {
             <div className={styles.inner}>
                 <img src={images.logo} alt="Tiktok" />
 
-                <HeadlessTippy
-                    interactive
-                    visible={searchResult.length > 0}
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search accounts and videos" spellCheck={false} />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                {/* search */}
+                <Search />
 
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <Tippy delay={[0, 200]} placement="bottom" content="Upload video">
+                            <Tippy delay={[0, 50]} placement="bottom" content="Upload video">
                                 <button className={cx('action-btn')}>
                                     <Uploadicon />
                                 </button>
                             </Tippy>
+                            <Tippy delay={[0, 50]} placement="bottom" content="Message">
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 50]} placement="bottom" content="Inbox">
+                                <button className={cx('action-btn')}>
+                                    <InboxIcon />
+                                </button>
+                            </Tippy>
+                            
                         </>
                     ) : (
                         <>
