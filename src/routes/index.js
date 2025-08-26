@@ -1,29 +1,22 @@
 // layouts
-import { HeaderOnly } from "~/Components/Layout"
+import { HeaderOnly } from '~/Components/Layout';
 
 // pages
-import Home from "~/pages/Home"
-import Following from "~/pages/Following"
-import Profile from "~/pages/Profile"
-import Upload from "~/pages/Upload"
-import SearchPage from "~/pages/SearchPage"
-
-
+import Home from '~/pages/Home';
+import Following from '~/pages/Following';
+import Profile from '~/pages/Profile';
+import Upload from '~/pages/Upload';
+import SearchPage from '~/pages/SearchPage';
 
 // publicRoutes
 const publicRoutes = [
-    {path: '/', component: Home},
-    {path: '/following', component: Following},
-    {path: '/profile', component: Profile},
-    {path: '/upload', component: Upload, layout: HeaderOnly},
-    {path: '/search', component: SearchPage, layout: null}
+    { path: '/', component: Home },
+    { path: '/following', component: Following },
+    { path: '/:nickname', component: Profile },
+    { path: '/upload', component: Upload, layout: HeaderOnly },
+    { path: '/search', component: SearchPage, layout: null },
+];
 
+const privateRoutes = [];
 
-]
-
-const privateRoutes = [
-
-]
-
-
-export {publicRoutes, privateRoutes}
+export { publicRoutes, privateRoutes };

@@ -22,7 +22,6 @@ import styles from './Header.module.scss';
 import Menu from '~/Components/Popper/Menu';
 import { InboxIcon, MessageIcon, Uploadicon } from '~/Components/Icons';
 import Search from '../Search';
-import { faMessage } from '@fortawesome/free-regular-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -84,7 +83,6 @@ const userMenu = [
 
 
 function Header() {
-    // const ImageRef = useRef()
 
     const currentUser = true;
 

@@ -13,30 +13,39 @@ const cx = classNames.bind(styles);
 function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
-    const [showResult, setShowResult] = useState(true)
+    const [showResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const inputRef = useRef();
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setSearchResult([1, 2, 3]);
-    //     }, 0);
-    // }, []);
+    useEffect(() => {
+        if (!searchValue.trim()) {
+            setSearchResult([]);
+            setLoading(false);
+            return;
+        }
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+            .then((res) => res.json())
+            .then((res) => {
+                setSearchResult(res.data);
+                setLoading(false);
+            });
+    }, [searchValue]);
 
     const handleOnchange = (e) => {
-        setSearchValue(e.target.value)
-        setSearchResult([1, 2, 3]);
-    }
+        setSearchValue(e.target.value);
+        setLoading(true);
+    };
 
     const handleClear = () => {
-        setSearchValue('')
-        setSearchResult([])
-        inputRef.current.focus()
-    }
+        setSearchValue('');
+        setSearchResult([]);
+        inputRef.current.focus();
+    };
 
     const handleHideResult = () => {
-        setShowResult(false)
-    }
+        setShowResult(false);
+    };
 
     return (
         <div>
@@ -47,10 +56,9 @@ function Search() {
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
+                            {searchResult.map((result) => (
+                                <AccountItem key={result.id} data={result} />
+                            ))}
                         </PopperWrapper>
                     </div>
                 )}
@@ -65,12 +73,12 @@ function Search() {
                         onChange={(e) => handleOnchange(e)}
                         onFocus={() => setShowResult(true)}
                     />
-                    {!!searchValue && (
+                    {!!searchValue && !loading && (
                         <button className={cx('clear')} onClick={handleClear}>
                             <FontAwesomeIcon icon={faCircleXmark} />
                         </button>
-                        // <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> 
                     )}
+                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
                     <button className={cx('search-btn')}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>
