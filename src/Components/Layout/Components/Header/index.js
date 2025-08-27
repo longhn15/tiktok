@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import {useRef } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -85,6 +86,7 @@ const userMenu = [
 function Header() {
 
     const currentUser = true;
+    const imgRef = useRef();
 
     return (
         <header className={cx('wrapper')}>
@@ -127,6 +129,7 @@ function Header() {
                         {currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
+                                ref={imgRef}
                                 src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/e68ed94c47a6deec843feeb4dc726338~tplv-tiktokx-cropcenter:100:100.jpeg?dr=14579&refresh_token=2e415a29&x-expires=1755313200&x-signature=bnYCS%2FSTVMh%2FqTIbA1i3Sn%2B7pmw%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=sg1"
                                 alt="nguyenvana"
                                 fallback="https://files.fullstack.edu.vn/f8-prod/user_avatars/1/623d4b2d95cec.png"
