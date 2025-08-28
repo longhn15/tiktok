@@ -1,7 +1,8 @@
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import {useRef } from 'react';
+import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -21,8 +22,10 @@ import Image from '~/Components/Image';
 import images from '~/assets/images';
 import styles from './Header.module.scss';
 import Menu from '~/Components/Popper/Menu';
-import { InboxIcon, MessageIcon, Uploadicon } from '~/Components/Icons';
+import { InboxIcon, MessageIcon, UploadIcon } from '~/Components/Icons';
 import Search from '../Search';
+import routesConfig from '~/config/routes'
+
 
 const cx = classNames.bind(styles);
 
@@ -82,16 +85,14 @@ const userMenu = [
     },
 ];
 
-
 function Header() {
-
     const currentUser = true;
     const imgRef = useRef();
 
     return (
         <header className={cx('wrapper')}>
             <div className={styles.inner}>
-                <img src={images.logo} alt="Tiktok" />
+                <Link to={routesConfig.home} className={cx('logo-link')} ><img src={images.logo} alt="Tiktok" /></Link>
 
                 {/* search */}
                 <Search />
@@ -101,7 +102,7 @@ function Header() {
                         <>
                             <Tippy delay={[0, 50]} placement="bottom" content="Upload video">
                                 <button className={cx('action-btn')}>
-                                    <Uploadicon />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
                             <Tippy delay={[0, 50]} placement="bottom" content="Message">
@@ -112,9 +113,9 @@ function Header() {
                             <Tippy delay={[0, 50]} placement="bottom" content="Inbox">
                                 <button className={cx('action-btn')}>
                                     <InboxIcon />
+                                    <span className={cx('badge')}>12</span>
                                 </button>
                             </Tippy>
-                            
                         </>
                     ) : (
                         <>
@@ -131,7 +132,7 @@ function Header() {
                                 className={cx('user-avatar')}
                                 ref={imgRef}
                                 src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/e68ed94c47a6deec843feeb4dc726338~tplv-tiktokx-cropcenter:100:100.jpeg?dr=14579&refresh_token=2e415a29&x-expires=1755313200&x-signature=bnYCS%2FSTVMh%2FqTIbA1i3Sn%2B7pmw%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=sg1"
-                                alt="nguyenvana"
+                                alt="duongduc"
                                 fallback="https://files.fullstack.edu.vn/f8-prod/user_avatars/1/623d4b2d95cec.png"
                             />
                         ) : (
