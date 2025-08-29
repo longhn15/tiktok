@@ -3,9 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
-import axios from 'axios';
 
-import * as searchSevices from '~/apiSevices/searchSevices';
+import * as searchSevices from '~/services/searchSevice';
 import AccountItem from '~/Components/AccountItem';
 import { Wrapper as PopperWrapper } from '~/Components/Popper';
 import styles from './Search.module.scss';
