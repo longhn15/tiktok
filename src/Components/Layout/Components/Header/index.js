@@ -24,8 +24,7 @@ import styles from './Header.module.scss';
 import Menu from '~/Components/Popper/Menu';
 import { InboxIcon, MessageIcon, UploadIcon } from '~/Components/Icons';
 import Search from '../Search';
-import routesConfig from '~/config/routes'
-
+import routesConfig from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -92,7 +91,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={styles.inner}>
-                <Link to={routesConfig.home} className={cx('logo-link')} ><img src={images.logo} alt="Tiktok" /></Link>
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="Tiktok" />
+                </Link>
 
                 {/* search */}
                 <Search />
