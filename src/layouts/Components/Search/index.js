@@ -15,13 +15,13 @@ const cx = classNames.bind(styles);
 function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
-    const [showResult, setShowResult] = useState(true);
+    const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const debounced = useDebounce(searchValue, 700);
+    const debouncedValue = useDebounce(searchValue, 700);
 
     useEffect(() => {
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             setLoading(false);
             return;
@@ -30,14 +30,14 @@ function Search() {
         const fetchApi = async () => {
             setLoading(true);
 
-            const res = await searchSevices.search(debounced);
+            const res = await searchSevices.search(debouncedValue);
 
             setSearchResult(res);
             setLoading(false);
         };
 
         fetchApi();
-    }, [debounced]);
+    }, [debouncedValue]);
 
     const handleOnchange = (e) => {
         const search_Value = e.target.value;
